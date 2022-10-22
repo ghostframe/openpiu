@@ -1,26 +1,15 @@
-html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: black; margin: 0; color: white
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.game-container {
+  position: relative; width: 100%; max-width: 2000px; margin: auto;
 }
 
-* {
-  box-sizing: border-box;
+.player {
+  position: absolute; width: 100%; height: 100vh
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.canvas {
+  position: absolute; width: 100%;
 }

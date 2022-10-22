@@ -1,0 +1,78 @@
+[
+  {
+    "title": "Caprice Of Otada",
+    "difficulties": [
+      "s3 Hidden",
+      "s4 Fiesta",
+      "s6 New",
+      "s8",
+      "s17",
+      "s18 Another",
+      "s19 Another",
+      "d10",
+      "d18",
+      "d19 Another",
+      "d21 Another",
+      "s19 Quest"
+    ],
+    "stepFilename": "songs/E03 - Caprice of Otada.ssc",
+    "artist": "Banya Production"
+  },
+  {
+    "title": "Money",
+    "difficulties": [
+      "s10",
+      "s14",
+      "d12",
+      "d16",
+      "SP",
+      "s12 UCS"
+    ],
+    "stepFilename": "songs/E04 - Money.ssc",
+    "artist": "Banya Production"
+  },
+  {
+    "title": "Faster Z",
+    "difficulties": [
+      "s4 Hidden",
+      "s4 New",
+      "s6",
+      "s8 Another",
+      "s12",
+      "s16 Another",
+      "s19",
+      "s20 Another",
+      "d14",
+      "d18 Another",
+      "d20",
+      "d22 Another",
+      "d23 New",
+      "d18 Quest",
+      "s11 Quest",
+      "s5 Quest"
+    ],
+    "stepFilename": "songs/E12 - Faster Z.ssc",
+    "artist": "Yahpp"
+  },
+  {
+    "title": "Jam O Beat",
+    "difficulties": [
+      "s3 Quest",
+      "s6 Quest",
+      "s7",
+      "s14",
+      "s15 Quest",
+      "quest",
+      "quest",
+      "d5 Quest",
+      "d12 Quest",
+      "d13 Quest",
+      "d14",
+      "d16 Quest",
+      "SP",
+      "DP"
+    ],
+    "stepFilename": "songs/E25 - Jam O Beat.ssc",
+    "artist": "Banya Production"
+  }
+]
