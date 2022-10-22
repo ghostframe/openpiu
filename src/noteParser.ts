@@ -9,23 +9,33 @@ export type Note = {
 
 const lineSeparatorRegex = "[\r\n]+";
 
-type BPM = {
-  ticks: number;
+type Event = {
+  beats: number;
   value: number;
 };
+
+type BPM = Event;
+type Delay = Event;
 
 type Step = {
   youtubeId: string;
   notes: Array<Note>;
 };
 
-function parseBpms(noteData: string, difficultyIndex: number): Array<BPM> {
-  const bpmsStr = parseFieldRepeated(noteData, "BPMS")[difficultyIndex + 1];
-  return bpmsStr.split(",").map((bpmStr) => {
-    const bpmSplit = bpmStr.match(/(.*)=(.*)/);
+function parseEventField(
+  noteData: string,
+  field: string,
+  difficultyIndex: number
+): Array<Event> {
+  const eventsStr = parseFieldRepeated(noteData, field)[difficultyIndex + 1];
+  if (eventsStr.length === 0) {
+    return []
+  }
+  return eventsStr.split(",").map((eventStr) => {
+    const eventSplit = eventStr.match(/(.*)=(.*)/);
     return {
-      ticks: Number.parseFloat(bpmSplit!![1]),
-      value: Number.parseFloat(bpmSplit!![2]),
+      beats: Number.parseFloat(eventSplit!![1]),
+      value: Number.parseFloat(eventSplit!![2]),
     };
   });
 }
@@ -42,26 +52,32 @@ function beatAndMeasureToMs(
   measureDivision: number,
   beat: number,
   bpms: Array<BPM>,
+  delays: Array<Delay>,
   initialOffset: number
 ): number {
   const beatsFromStart = (measure + beat / measureDivision) * 4;
 
-  const bpmsFromStart = bpms.filter((bpm) => bpm.ticks < beatsFromStart);
+  const bpmsFromStart = bpms.filter((bpm) => bpm.beats < beatsFromStart);
   const currentBpm = bpmsFromStart[bpmsFromStart.length - 1];
   var currentBpmOffsetMs = 0;
   for (var i = 0; i < bpmsFromStart.length - 1; i++) {
     const bpm = bpmsFromStart[i];
     const nextBpm = bpmsFromStart[i + 1];
-    const bpmDurationTicks = nextBpm.ticks - bpm.ticks;
+    const bpmDurationTicks = nextBpm.beats - bpm.beats;
     currentBpmOffsetMs += beatsToMs(bpmDurationTicks, bpm);
   }
 
-  const ticksOfCurrentBpm = beatsFromStart - currentBpm.ticks;
+  const delaysFromStart = delays.filter((delay) => delay.beats < beatsFromStart);
+  var currentDelayOffsetMs = 0;
+  delaysFromStart.forEach((delay) => (currentDelayOffsetMs += delay.value * 1000));
+
+  const ticksOfCurrentBpm = beatsFromStart - currentBpm.beats;
 
   return (
     beatsToMs(ticksOfCurrentBpm, currentBpm) +
     initialOffset +
-    currentBpmOffsetMs
+    currentBpmOffsetMs +
+    currentDelayOffsetMs
   );
 }
 
@@ -84,6 +100,7 @@ function stripComments(str: string): string {
 function parseNotes(
   noteDataStr: string,
   bpms: Array<BPM>,
+  delays: Array<Delay>,
   initialOffset: number
 ): Array<Note> {
   const measureSeparator = new RegExp(
@@ -117,6 +134,7 @@ function parseNotes(
               measure.length,
               division,
               bpms,
+              delays,
               initialOffset
             );
             const note: Note = {
@@ -135,6 +153,7 @@ function parseNotes(
               measure.length,
               division,
               bpms,
+              delays,
               initialOffset
             );
             currentlyHeldNotes[lane].endTime = noteEndMs;
@@ -156,8 +175,9 @@ export function parseStepFile(
     parseFieldSingle(fileContents, "YOUTUBEOFFSET")
   );
   const notesStr = parseFieldRepeated(fileContents, "NOTES")[difficultyIndex];
-  const bpms = parseBpms(fileContents, difficultyIndex);
-  const notes = parseNotes(notesStr, bpms, youtubeOffset);
+  const bpms = parseEventField(fileContents, "BPMS", difficultyIndex);
+  const delays = parseEventField(fileContents, "DELAYS", difficultyIndex);
+  const notes = parseNotes(notesStr, bpms, delays, youtubeOffset);
   return {
     notes,
     youtubeId,
