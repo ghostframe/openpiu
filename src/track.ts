@@ -1,5 +1,5 @@
 import { Lane } from './controls';
-import { Note, parseStepFile as loadStep } from './noteParser';
+import { Note, parseStepFile } from './noteParser';
 import { Score } from './score';
 import { Song } from './game';
 const YTPlayer = require('yt-player');
@@ -24,7 +24,8 @@ export class Track {
   static async start(song: Song, difficultyIndex: number) {
     const stepContentsFetch = await fetch(song.stepFilename);
     const stepContents = await stepContentsFetch.text();
-    const step = loadStep(stepContents, difficultyIndex);
+    const step = parseStepFile(stepContents, difficultyIndex);
+    console.log(step.notes)
     this.notes = step.notes;
     player.load(step.youtubeId);
     player.setVolume(100);

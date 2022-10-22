@@ -14,9 +14,9 @@ export type Song = {
 };
 
 export class Game {
-  static useDebugNoteClicker = false;
+  static useDebugNoteClicker = true;
   static debugNoteClick: HTMLAudioElement | null = null;
-  static noteSpeed = 0.35;
+  static noteSpeed = 0.4;
   static started = false;
 
   static async start(song: Song, difficultyIndex: number) {

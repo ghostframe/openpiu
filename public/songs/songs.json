@@ -74,5 +74,35 @@
     ],
     "stepFilename": "songs/NX_NX2/E25 - Jam O Beat.ssc",
     "artist": "Banya Production"
+  },
+  {
+    "title": "Beat of the War",
+    "difficulties": [
+      "s3 New",
+      "s5",
+      "s9 New",
+      "s10",
+      "s15",
+      "d10 HalfDouble Hidden",
+      "d12",
+      "d19"
+    ],
+    "stepFilename": "songs/REBIRTH_PREX3/820 - Beat of the War.ssc",
+    "artist": "Banya"
+  },
+  {
+    "title": "TEST",
+    "difficulties": [
+      "s3 New",
+      "s5",
+      "s9 New",
+      "s10",
+      "s15",
+      "d10 HalfDouble Hidden",
+      "d12",
+      "d19"
+    ],
+    "stepFilename": "songs/REBIRTH_PREX3/test.ssc",
+    "artist": "Banya"
   }
 ]

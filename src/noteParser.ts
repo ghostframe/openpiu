@@ -5,7 +5,7 @@ export type Note = {
   endTime: number | null;
 };
 
-const lineSeparatorRegex = '[\r\n]+';
+const lineSeparatorRegex = "[\r\n]+";
 
 type BPM = {
   ticks: number;
@@ -13,15 +13,13 @@ type BPM = {
 };
 
 type Step = {
-  music: string;
   youtubeId: string;
   notes: Array<Note>;
 };
 
-// Receives something like
 function parseBpms(noteData: string): Array<BPM> {
   const bpmsStr = noteData.match(/BPMS:([\s\S]*?);/)!![1];
-  return bpmsStr.split(',').map((bpmStr) => {
+  return bpmsStr.split(",").map((bpmStr) => {
     const bpmSplit = bpmStr.match(/(.*)=(.*)/);
     return {
       ticks: Number.parseFloat(bpmSplit!![1]),
@@ -30,49 +28,55 @@ function parseBpms(noteData: string): Array<BPM> {
   });
 }
 
+function beatsToMs(beats: number, bpm: BPM) {
+  const beatsPerMinute = bpm.value;
+  const beatsPerSecond = beatsPerMinute / 60;
+  const millisecondsPerBeat = 1000 / beatsPerSecond;
+  return beats * millisecondsPerBeat;
+}
+
 function beatAndMeasureToMs(
   measure: number,
   measureDivision: number,
   beat: number,
   bpms: Array<BPM>,
-  offset: number
+  songOffset: number
 ): number {
-  const beatsPerMinute = bpms[0].value;
-  const beatsPerSecond = beatsPerMinute / 60;
-  const millisecondsPerBeat = 1000 / beatsPerSecond;
-  const noteBeginTicks = (measure + beat / measureDivision) * 4;
-  return millisecondsPerBeat * noteBeginTicks + offset;
+  const beatsFromStart = (measure + beat / measureDivision) * 4;
+  
+  const bpmsFromStart = bpms.filter((bpm) => bpm.ticks < beatsFromStart);
+  const currentBpm = bpmsFromStart[bpmsFromStart.length - 1];
+  var currentBpmOffsetMs = 0;
+  for (var i = 0; i < bpmsFromStart.length - 1; i++) {
+    const bpm = bpmsFromStart[i]
+    const nextBpm = bpmsFromStart[i + 1]
+    const bpmDurationTicks = (nextBpm.ticks - bpm.ticks);
+    currentBpmOffsetMs += beatsToMs(bpmDurationTicks, bpm)
+  }
+
+  const ticksOfCurrentBpm = beatsFromStart - currentBpm.ticks;
+
+  return beatsToMs(ticksOfCurrentBpm, currentBpm) + songOffset + currentBpmOffsetMs;
 }
 
-function parseOffset(noteData: string): number {
-  const offsetStr = noteData.match(/#OFFSET:(.*?);/)!![1];
-  return Number.parseFloat(offsetStr);
-}
-
-function parseMusic(stepStr: string): string {
-  return stepStr.match(/#MUSIC:(.*?);/)!![1];
-}
-
-function parseYoutubeId(stepStr: string): string {
-  return stepStr.match(/#YOUTUBEID:(.*?);/)!![1];
-}
-
-function parseYoutubeOffset(stepStr: string): string {
-  return stepStr.match(/#YOUTUBEOFFSET:(.*?);/)!![1];
+function parseFieldSingle(stepStr: string, field: string): string {
+  const match = stepStr.match(new RegExp(`#${field}:(.*?);`));
+  if (!match) {
+    throw new Error(`No match for field '${field}'!`)
+  }
+  return match[1];  
 }
 
 export function parseStepFile(
   fileContents: string,
   difficultyIndex: number
 ): Step {
-  fileContents = fileContents.replaceAll(new RegExp('\\s*//(.*)', 'g'), '');
-  const youtubeId = parseYoutubeId(fileContents);
-  const youtubeOffset = Number.parseFloat(parseYoutubeOffset(fileContents));
-  const music = parseMusic(fileContents);
+  fileContents = fileContents.replaceAll(new RegExp("\\s*//(.*)", "g"), "");
+  const youtubeId = parseFieldSingle(fileContents, "YOUTUBEID");
+  const youtubeOffset = Number.parseFloat(parseFieldSingle(fileContents, "YOUTUBEOFFSET"));
   const noteDataStr = fileContents.split(
     new RegExp(`#NOTEDATA:;${lineSeparatorRegex}`)
   )[difficultyIndex + 1];
-  const offset = parseOffset(noteDataStr);
   const bpms = parseBpms(noteDataStr);
 
   const measureSeparator = new RegExp(
@@ -130,7 +134,6 @@ export function parseStepFile(
     }
   }
   return {
-    music,
     notes,
     youtubeId,
   };
