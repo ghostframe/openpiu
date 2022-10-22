@@ -97,16 +97,58 @@ export class Score {
   }
 
   static draw() {
-    Canvas.context.save();
-    Canvas.context.fillStyle = "white";
-    Canvas.context.font = "16px Arial";
-    Canvas.context.fillText(
-      `Score: ${Score.score} \nCombo: ${Score.combo}`,
-      Board.xEnd + 30,
-      Board.yStart + 32
-    );
-    Canvas.context.restore();
+    // Canvas.context.save();
+    // Canvas.context.fillStyle = "white";
+    // Canvas.context.font = "16px Arial";
+    // Canvas.context.fillText(
+    //   `Score: ${Score.score} \nCombo: ${Score.combo}`,
+    //   Board.xEnd + 30,
+    //   Board.yStart + 32
+    // );
+    // Canvas.context.restore();
     this.drawNoteJudgement();
+    this.drawCombo()
+  }
+
+  private static findChunksFor(number: number): { x: number; y: number } {
+    return {
+      y: Math.floor(number / 4),
+      x: number % 4
+    }
+  }
+
+  static drawCombo() {
+    const now = Track.getTimeMs();
+    const elapsedTime = now - this.currentJudgementStartTime;
+    if (this.combo > 0 && elapsedTime < 1000) {
+      const units = this.combo % 10;
+      const tenths = Math.floor((this.combo % 100) / 10);
+      const hundreds = Math.floor((this.combo % 1000) / 100);
+      const comboNumberOriginalWidth = Sprites.comboNumbers.image.width / 4;
+      const comboNumberOriginalHeight = Sprites.comboNumbers.image.height / 4;
+      const desiredComboNumberWidth = comboNumberOriginalWidth / 1.5;
+      const desiredComboNumberHeight = comboNumberOriginalHeight / 1.5;
+      const y = Board.yStart + 240;
+      const hundredsX = centeredXCoordsFor(desiredComboNumberWidth * 3).start;
+      const tenthsX = hundredsX + desiredComboNumberWidth;
+      const unitX = hundredsX + desiredComboNumberWidth * 2;
+      const unitChunks = this.findChunksFor(units)
+      const tenthChunks = this.findChunksFor(tenths)
+      const hundredsChunks = this.findChunksFor(hundreds)
+
+      Sprites.drawChunk(Sprites.comboNumbers, unitChunks.x, unitChunks.y, unitX, y, {
+        destWidth: desiredComboNumberWidth,
+        destHeight: desiredComboNumberHeight,
+      });
+      Sprites.drawChunk(Sprites.comboNumbers, tenthChunks.x, tenthChunks.y, tenthsX, y, {
+        destWidth: desiredComboNumberWidth,
+        destHeight: desiredComboNumberHeight,
+      });
+      Sprites.drawChunk(Sprites.comboNumbers, hundredsChunks.x, hundredsChunks.y, hundredsX, y, {
+        destWidth: desiredComboNumberWidth,
+        destHeight: desiredComboNumberHeight,
+      });
+    }
   }
 
   static drawNoteJudgement() {

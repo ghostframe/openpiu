@@ -25,6 +25,7 @@ export class Sprites {
   static note5TailEnd: Sprite;
   static noteJudgements: Sprite;
   static noteExplosion: Sprite;
+  static comboNumbers: Sprite;
 
   static async load(): Promise<void> {
     this.board = await this.loadSprite('BASE 1x2');
@@ -60,6 +61,7 @@ export class Sprites {
     );
     this.noteJudgements = await this.loadSprite('playerjudgement 1x6');
     this.noteExplosion = await this.loadSprite('GLOW 5x2');
+    this.comboNumbers = await this.loadSprite('FIESTA 2 4x4');
   }
 
   private static loadSprite(name: string): Promise<Sprite> {
@@ -94,6 +96,7 @@ export class Sprites {
       sourceX?: number;
       sourceY?: number;
       sourceWidth?: number;
+      destWidth?: number;
       destHeight?: number;
     }
   ) {
@@ -103,6 +106,7 @@ export class Sprites {
     let sourceX = chunkXSize * xChunk;
     let sourceY = chunkYSize * yChunk;
     let destHeight = chunkYSize;
+    let destWidth = chunkXSize;
     let sourceWidth = chunkXSize;
 
     if (options?.sourceX) {
@@ -111,11 +115,15 @@ export class Sprites {
     if (options?.sourceY) {
       sourceY += options.sourceY;
     }
+    if (options?.sourceWidth) {
+      sourceWidth = options.sourceWidth;
+      destWidth = sourceWidth
+    }
     if (options?.destHeight) {
       destHeight = options.destHeight;
     }
-    if (options?.sourceWidth) {
-      sourceWidth = options.sourceWidth;
+    if (options?.destWidth) {
+      destWidth = options.destWidth;
     }
 
     Canvas.context.drawImage(
@@ -126,7 +134,7 @@ export class Sprites {
       chunkYSize,
       x,
       y,
-      sourceWidth,
+      destWidth,
       destHeight
     );
   }
