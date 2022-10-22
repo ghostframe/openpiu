@@ -25,7 +25,6 @@ export class Track {
     const stepContentsFetch = await fetch(song.stepFilename);
     const stepContents = await stepContentsFetch.text();
     const step = parseStepFile(stepContents, difficultyIndex);
-    console.log(step.notes)
     this.notes = step.notes;
     player.load(step.youtubeId);
     player.setVolume(100);
@@ -33,6 +32,10 @@ export class Track {
       player.seek(0);
       player.play();
     });
+  }
+
+  static stop() {
+    player.stop()
   }
 
   static notePressed(index: number) {

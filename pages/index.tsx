@@ -6,6 +6,7 @@ import { Song } from "../src/game";
 
 const Home: NextPage = () => {
   const [gameStarted, setGameStarted] = useState(false);
+  const [game, setGame] = useState<any>(null);
 
   function startGame(song: Song, difficultyIndex: number) {
     setGameStarted(true);
@@ -50,7 +51,7 @@ const Home: NextPage = () => {
                         .filter((difficulty) => !difficulty.startsWith("d"))
                         .map((difficulty, difficultyIndex) => (
                           <a
-                            key={difficulty}
+                            key={difficultyIndex}
                             href="#"
                             className="card-link"
                             onClick={(ev) => startGame(song, difficultyIndex)}
@@ -67,14 +68,23 @@ const Home: NextPage = () => {
         )}
 
         {gameStarted && (
-          <div className="game-container">
-            <div id="player" className="player"></div>
-            <canvas
-              id="game"
-              width="1000"
-              height="600"
-              className="canvas"
-            ></canvas>
+          <div>
+            <div className="game-container">
+              <div id="player" className="player"></div>
+              <canvas
+                id="game"
+                width="1000"
+                height="600"
+                className="canvas"
+              ></canvas>
+            </div>
+            <button
+              className="btn btn-primary"
+              style={{ position: "absolute", left: "1px", top: "10px" }}
+              onClick={(ev) => document.location.reload()}
+            >
+              Back
+            </button>
           </div>
         )}
       </main>

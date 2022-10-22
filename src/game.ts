@@ -33,6 +33,10 @@ export class Game {
     }
   }
 
+  static stop() {
+    Track.stop()
+  }
+
   static drawFrame() {
     // Drawing
     Game.clearScreen();

@@ -1,5 +1,32 @@
 [
   {
+    "title": "Turkey March",
+    "difficulties": [
+      "Pro S2",
+      "s2 Hidden",
+      "s3 New",
+      "Pro S4",
+      "s7",
+      "s12",
+      "s15 Another",
+      "s18 Another",
+      "s21 Quest",
+      "d9",
+      "Pro HalfDouble 19",
+      "d19",
+      "DP Couple 7",
+      "DP Couple 12",
+      "DP Pro",
+      "s18 OUCS",
+      "d17 OUCS",
+      "DP50 OUCS",
+      "DP Quest (F2) 1",
+      "DP Quest (F2) 2"
+    ],
+    "stepFilename": "songs/1ST_3RD/303 - Turkey March.ssc",
+    "artist": "Banya"
+  },
+  {
     "title": "Caprice Of Otada",
     "difficulties": [
       "s3 Hidden",
@@ -91,18 +118,29 @@
     "artist": "Banya"
   },
   {
-    "title": "TEST",
+    "title": "Beethoven Virus",
     "difficulties": [
-      "s3 New",
-      "s5",
-      "s9 New",
-      "s10",
-      "s15",
-      "d10 HalfDouble Hidden",
-      "d12",
-      "d19"
+      "s4",
+      "s7",
+      "s8",
+      "s10 Another",
+      "s13",
+      "s14 Hidden",
+      "s16",
+      "s17 Another",
+      "s18 Quest",
+      "d8",
+      "d11 Another",
+      "d18",
+      "d20",
+      "DP",
+      "s2 Hidden",
+      "Jump S2",
+      "Jump S3",
+      "Pro S3",
+      "Pro HalfDouble 13"
     ],
-    "stepFilename": "songs/REBIRTH_PREX3/test.ssc",
+    "stepFilename": "songs/SE_EXTRA/505 - Beethoven Virus.ssc",
     "artist": "Banya"
   }
 ]

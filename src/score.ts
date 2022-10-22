@@ -91,6 +91,7 @@ export class Score {
   private static bad() {
     // this.score -= 200;
     this.bads++;
+    this.combo = 0;
     this.currentJudgement = NoteJudgement.BAD;
     this.currentJudgementStartTime = Track.getTimeMs();
   }
