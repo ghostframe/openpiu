@@ -30,6 +30,7 @@ export class Track {
     player.load(step.youtubeId);
     player.setVolume(100);
     player.on('unstarted', () => {
+      player.seek(0);
       player.play();
     });
   }

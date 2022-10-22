@@ -1,3 +1,5 @@
+import { arrayBuffer } from "stream/consumers";
+
 export type Note = {
   lane: number;
   time: number;
@@ -17,8 +19,8 @@ type Step = {
   notes: Array<Note>;
 };
 
-function parseBpms(noteData: string): Array<BPM> {
-  const bpmsStr = noteData.match(/BPMS:([\s\S]*?);/)!![1];
+function parseBpms(noteData: string, difficultyIndex: number): Array<BPM> {
+  const bpmsStr = parseFieldRepeated(noteData, "BPMS")[difficultyIndex + 1];
   return bpmsStr.split(",").map((bpmStr) => {
     const bpmSplit = bpmStr.match(/(.*)=(.*)/);
     return {
@@ -40,51 +42,59 @@ function beatAndMeasureToMs(
   measureDivision: number,
   beat: number,
   bpms: Array<BPM>,
-  songOffset: number
+  initialOffset: number
 ): number {
   const beatsFromStart = (measure + beat / measureDivision) * 4;
-  
+
   const bpmsFromStart = bpms.filter((bpm) => bpm.ticks < beatsFromStart);
   const currentBpm = bpmsFromStart[bpmsFromStart.length - 1];
   var currentBpmOffsetMs = 0;
   for (var i = 0; i < bpmsFromStart.length - 1; i++) {
-    const bpm = bpmsFromStart[i]
-    const nextBpm = bpmsFromStart[i + 1]
-    const bpmDurationTicks = (nextBpm.ticks - bpm.ticks);
-    currentBpmOffsetMs += beatsToMs(bpmDurationTicks, bpm)
+    const bpm = bpmsFromStart[i];
+    const nextBpm = bpmsFromStart[i + 1];
+    const bpmDurationTicks = nextBpm.ticks - bpm.ticks;
+    currentBpmOffsetMs += beatsToMs(bpmDurationTicks, bpm);
   }
 
   const ticksOfCurrentBpm = beatsFromStart - currentBpm.ticks;
 
-  return beatsToMs(ticksOfCurrentBpm, currentBpm) + songOffset + currentBpmOffsetMs;
+  return (
+    beatsToMs(ticksOfCurrentBpm, currentBpm) +
+    initialOffset +
+    currentBpmOffsetMs
+  );
 }
 
 function parseFieldSingle(stepStr: string, field: string): string {
   const match = stepStr.match(new RegExp(`#${field}:(.*?);`));
-  if (!match) {
-    throw new Error(`No match for field '${field}'!`)
-  }
-  return match[1];  
+  return match!![1];
 }
 
-export function parseStepFile(
-  fileContents: string,
-  difficultyIndex: number
-): Step {
-  fileContents = fileContents.replaceAll(new RegExp("\\s*//(.*)", "g"), "");
-  const youtubeId = parseFieldSingle(fileContents, "YOUTUBEID");
-  const youtubeOffset = Number.parseFloat(parseFieldSingle(fileContents, "YOUTUBEOFFSET"));
-  const noteDataStr = fileContents.split(
-    new RegExp(`#NOTEDATA:;${lineSeparatorRegex}`)
-  )[difficultyIndex + 1];
-  const bpms = parseBpms(noteDataStr);
+function parseFieldRepeated(stepStr: string, field: string): Array<string> {
+  const fieldMatches = stepStr.matchAll(
+    new RegExp(`#${field}:([\\s\\S]*?);`, "g")
+  );
+  return Array.from(fieldMatches, (match) => match[1]);
+}
 
+function stripComments(str: string): string {
+  return str.replaceAll(new RegExp("\\s*//(.*)", "g"), "");
+}
+
+function parseNotes(
+  noteDataStr: string,
+  bpms: Array<BPM>,
+  initialOffset: number
+): Array<Note> {
   const measureSeparator = new RegExp(
     `${lineSeparatorRegex},${lineSeparatorRegex}`
   );
-  const measures = noteDataStr
-    .split(measureSeparator)
-    .map((measure) => measure.split(new RegExp(lineSeparatorRegex)));
+  const measuresStr: Array<string> = noteDataStr.split(measureSeparator);
+  const measures = measuresStr.map((measure) =>
+    measure
+      .split(new RegExp(lineSeparatorRegex))
+      .filter((line) => line.length > 0)
+  );
 
   const currentlyHeldNotes: Record<number, Note> = {};
 
@@ -107,7 +117,7 @@ export function parseStepFile(
               measure.length,
               division,
               bpms,
-              youtubeOffset
+              initialOffset
             );
             const note: Note = {
               lane: lane + 1,
@@ -125,7 +135,7 @@ export function parseStepFile(
               measure.length,
               division,
               bpms,
-              youtubeOffset
+              initialOffset
             );
             currentlyHeldNotes[lane].endTime = noteEndMs;
           }
@@ -133,6 +143,21 @@ export function parseStepFile(
       }
     }
   }
+  return notes;
+}
+
+export function parseStepFile(
+  fileContents: string,
+  difficultyIndex: number
+): Step {
+  fileContents = stripComments(fileContents);
+  const youtubeId = parseFieldSingle(fileContents, "YOUTUBEID");
+  const youtubeOffset = Number.parseFloat(
+    parseFieldSingle(fileContents, "YOUTUBEOFFSET")
+  );
+  const notesStr = parseFieldRepeated(fileContents, "NOTES")[difficultyIndex];
+  const bpms = parseBpms(fileContents, difficultyIndex);
+  const notes = parseNotes(notesStr, bpms, youtubeOffset);
   return {
     notes,
     youtubeId,

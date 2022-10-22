@@ -14,7 +14,7 @@ export type Song = {
 };
 
 export class Game {
-  static useDebugNoteClicker = true;
+  static useDebugNoteClicker = false;
   static debugNoteClick: HTMLAudioElement | null = null;
   static noteSpeed = 0.4;
   static started = false;
