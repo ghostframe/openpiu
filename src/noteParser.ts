@@ -20,12 +20,12 @@ type Step = {
 
 // Receives something like
 function parseBpms(noteData: string): Array<BPM> {
-  const bpmsStr = noteData.match(/BPMS:([\s\S]*?);/)[1];
+  const bpmsStr = noteData.match(/BPMS:([\s\S]*?);/)!![1];
   return bpmsStr.split(',').map((bpmStr) => {
     const bpmSplit = bpmStr.match(/(.*)=(.*)/);
     return {
-      ticks: Number.parseFloat(bpmSplit[1]),
-      value: Number.parseFloat(bpmSplit[2]),
+      ticks: Number.parseFloat(bpmSplit!![1]),
+      value: Number.parseFloat(bpmSplit!![2]),
     };
   });
 }
@@ -45,20 +45,20 @@ function beatAndMeasureToMs(
 }
 
 function parseOffset(noteData: string): number {
-  const offsetStr = noteData.match(/#OFFSET:(.*?);/)[1];
+  const offsetStr = noteData.match(/#OFFSET:(.*?);/)!![1];
   return Number.parseFloat(offsetStr);
 }
 
 function parseMusic(stepStr: string): string {
-  return stepStr.match(/#MUSIC:(.*?);/)[1];
+  return stepStr.match(/#MUSIC:(.*?);/)!![1];
 }
 
 function parseYoutubeId(stepStr: string): string {
-  return stepStr.match(/#YOUTUBEID:(.*?);/)[1];
+  return stepStr.match(/#YOUTUBEID:(.*?);/)!![1];
 }
 
 function parseYoutubeOffset(stepStr: string): string {
-  return stepStr.match(/#YOUTUBEOFFSET:(.*?);/)[1];
+  return stepStr.match(/#YOUTUBEOFFSET:(.*?);/)!![1];
 }
 
 export function parseStepFile(

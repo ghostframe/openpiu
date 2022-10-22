@@ -1,10 +1,10 @@
 // Todo this
 
-import { Board } from './board';
-import { Canvas } from './canvas';
-import { Sprites } from './sprites';
-import { Track } from './track';
-import { centeredXCoordsFor } from './util';
+import { Board } from "./board";
+import { Canvas } from "./canvas";
+import { Sprites } from "./sprites";
+import { Track } from "./track";
+import { centeredXCoordsFor } from "./util";
 
 // SSS: all perfects
 // SS: all perfects and greats
@@ -35,8 +35,8 @@ export class Score {
   static goods = 0;
   static bads = 0;
 
-  static currentJudgement: NoteJudgement = null;
-  static currentJudgementStartTime: number = null;
+  static currentJudgement: NoteJudgement | null = null;
+  static currentJudgementStartTime: number = -10000;
 
   static hit(offsetTime: number) {
     this.combo++;
@@ -97,8 +97,8 @@ export class Score {
 
   static draw() {
     Canvas.context.save();
-    Canvas.context.fillStyle = 'white';
-    Canvas.context.font = '16px Arial';
+    Canvas.context.fillStyle = "white";
+    Canvas.context.font = "16px Arial";
     Canvas.context.fillText(
       `Score: ${Score.score} \nCombo: ${Score.combo}`,
       Board.xEnd + 30,

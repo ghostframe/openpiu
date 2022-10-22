@@ -34,7 +34,7 @@ function scanSongs() {
   const stepFilenames = glob.sync('public/songs/**/*.ssc')
   const songsMetadata = stepFilenames.map(parseSongMetadata)
   songsMetadata.forEach(stripRootDirectory);
-  console.log('Writing: ', JSON.stringify(songsMetadata))
+  console.log('Scanned songs.json: ', JSON.stringify(songsMetadata))
   fs.writeFileSync("./public/songs/songs.json", JSON.stringify(songsMetadata, "", 2))
 }
 

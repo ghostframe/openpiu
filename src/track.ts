@@ -9,7 +9,7 @@ export class Track {
   static audio: HTMLAudioElement;
   private static notes: Array<Note>;
   static heldNotes: Array<Note> = [];
-  static hitNotes: Record<Lane, number | null> = {
+  static hitNotes: Record<Lane, number> = {
     1: -100000,
     2: -100000,
     3: -100000,
