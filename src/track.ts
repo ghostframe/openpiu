@@ -1,7 +1,7 @@
 import { Lane } from './controls';
 import { Note, parseStepFile as loadStep } from './noteParser';
 import { Score } from './score';
-import { Song } from './index';
+import { Song } from './game';
 const YTPlayer = require('yt-player');
 const player = new YTPlayer('#player');
 

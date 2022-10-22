@@ -1,10 +1,10 @@
-import { Board } from './board';
-import { Canvas } from './canvas';
-import { Notes } from './notes';
-import { Sprites } from './sprites';
-import { Track } from './track';
-import { Controls } from './controls';
-import { Score } from './score';
+import { Board } from "./board";
+import { Canvas } from "./canvas";
+import { Notes } from "./notes";
+import { Sprites } from "./sprites";
+import { Track } from "./track";
+import { Controls } from "./controls";
+import { Score } from "./score";
 
 export type Song = {
   title: string;
@@ -14,6 +14,8 @@ export type Song = {
 };
 
 export class Game {
+  static useDebugNoteClicker = false;
+  static debugNoteClick: HTMLAudioElement | null = null;
   static noteSpeed = 0.35;
   static started = false;
 
@@ -23,6 +25,11 @@ export class Game {
       await Track.start(song, difficultyIndex);
       Game.started = true;
       Game.drawFrame();
+    }
+    if (this.useDebugNoteClicker) {
+      this.debugNoteClick = new Audio();
+      this.debugNoteClick.src = 'debugNoteClick.wav'
+      this.debugNoteClick.load()
     }
   }
 
@@ -38,8 +45,18 @@ export class Game {
     Controls.processGamepadInput();
     Controls.checkGoneNotes();
     Track.checkGoneHeldNotes();
+    if (Game.useDebugNoteClicker) {
+      Game.processDebugNoteClick()
+    }
 
     window.requestAnimationFrame(Game.drawFrame);
+  }
+
+  private static processDebugNoteClick() {
+    const trackTime = Track.getTimeMs();
+    if (Track.getNotes().some((note) => Math.abs(note.time - trackTime) <= 8)) {
+      this.debugNoteClick?.play()
+    }
   }
 
   private static noteTimeToPx(noteTime: number, currentTime: number): number {

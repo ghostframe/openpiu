@@ -40,7 +40,7 @@ const Home: NextPage = () => {
           <button
             id="play"
             onClick={() => {
-              import("../src/index").then(({ Game }) => {
+              import("../src/game").then(({ Game }) => {
                 Game.start(SONGS[songIndex], difficultyIndex);
               });
             }}

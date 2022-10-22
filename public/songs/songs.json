@@ -15,7 +15,7 @@
       "d21 Another",
       "s19 Quest"
     ],
-    "stepFilename": "songs/E03 - Caprice of Otada.ssc",
+    "stepFilename": "songs/NX_NX2/E03 - Caprice of Otada.ssc",
     "artist": "Banya Production"
   },
   {
@@ -28,7 +28,7 @@
       "SP",
       "s12 UCS"
     ],
-    "stepFilename": "songs/E04 - Money.ssc",
+    "stepFilename": "songs/NX_NX2/E04 - Money.ssc",
     "artist": "Banya Production"
   },
   {
@@ -51,7 +51,7 @@
       "s11 Quest",
       "s5 Quest"
     ],
-    "stepFilename": "songs/E12 - Faster Z.ssc",
+    "stepFilename": "songs/NX_NX2/E12 - Faster Z.ssc",
     "artist": "Yahpp"
   },
   {
@@ -72,7 +72,7 @@
       "SP",
       "DP"
     ],
-    "stepFilename": "songs/E25 - Jam O Beat.ssc",
+    "stepFilename": "songs/NX_NX2/E25 - Jam O Beat.ssc",
     "artist": "Banya Production"
   }
 ]
