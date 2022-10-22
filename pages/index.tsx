@@ -1,62 +1,82 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import SONGS from "../public/songs/songs.json";
-// import { Game } from "../src";
+import { Song } from "../src/game";
 
 const Home: NextPage = () => {
-  const [songIndex, setSongIndex] = useState(0);
-  const [difficultyIndex, setDifficultyIndex] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
+
+  function startGame(song: Song, difficultyIndex: number) {
+    setGameStarted(true);
+    import("../src/game").then(({ Game }) => {
+      Game.start(song, difficultyIndex);
+    });
+  }
 
   return (
     <div>
       <Head>
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+          crossOrigin="anonymous"
+        ></link>
+        <link
+          rel="stylesheet"
+          href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+        ></link>
         <title>OpenPIU</title>
       </Head>
 
       <main>
-        <div>
-          <select
-            id="song"
-            onChange={(event) =>
-              setSongIndex(Number.parseInt(event.target.value))
-            }
-          >
-            {SONGS.map((song, index) => (
-              <option key={song.title} value={index}>
-                {song.artist} - {song.title}
-              </option>
-            ))}
-          </select>
-          <select id="difficulty" onChange={(event) => {
-            setDifficultyIndex(Number.parseInt(event.target.value))
-          }}>
-            {SONGS[songIndex].difficulties.map((difficulty, index) => (
-              <option key={difficulty} value={index}>
-                {difficulty}
-              </option>
-            ))}
-          </select>
-          <button
-            id="play"
-            onClick={() => {
-              import("../src/game").then(({ Game }) => {
-                Game.start(SONGS[songIndex], difficultyIndex);
-              });
-            }}
-          >
-            Play
-          </button>
-        </div>
-        <div className="game-container">
-          <div id="player" className="player"></div>
-          <canvas
-            id="game"
-            width="1000"
-            height="600"
-            className="canvas"
-          ></canvas>
-        </div>
+        {!gameStarted && (
+          <div>
+            <h1 className="mb-3 p-3 text-center" style={{ color: "#40dbc9" }}>
+              <i className="las la-dragon"></i> OpenPIU
+            </h1>
+
+            <div className="d-flex justify-content-center">
+              <div className="col-6">
+                <h1 className="text-light">Songs</h1>
+                {SONGS.map((song) => (
+                  <div className="card text-bg-dark mb-2" key={song.title}>
+                    <div className="card-body">
+                      <h5 className="card-title">
+                        {song.artist} - {song.title}
+                      </h5>
+                      {song.difficulties
+                        .filter((difficulty) => !difficulty.startsWith("d"))
+                        .map((difficulty, difficultyIndex) => (
+                          <a
+                            key={difficulty}
+                            href="#"
+                            className="card-link"
+                            onClick={(ev) => startGame(song, difficultyIndex)}
+                          >
+                            {difficulty}
+                          </a>
+                        ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {gameStarted && (
+          <div className="game-container">
+            <div id="player" className="player"></div>
+            <canvas
+              id="game"
+              width="1000"
+              height="600"
+              className="canvas"
+            ></canvas>
+          </div>
+        )}
       </main>
 
       <footer></footer>
