@@ -3,14 +3,18 @@ import Head from "next/head";
 import { useState } from "react";
 import SONGS from "../public/songs/songs.json";
 import { Song } from "../src/game";
+import { Results } from "../src/score";
 
 const Home: NextPage = () => {
   const [gameStarted, setGameStarted] = useState(false);
+  const [gameResults, setGameResults] = useState<Results | null>(null);
 
   function startGame(song: Song, difficultyIndex: number) {
     setGameStarted(true);
     import("../src/game").then(({ Game }) => {
-      Game.start(song, difficultyIndex);
+      Game.start(song, difficultyIndex, (event) => {
+        setGameResults(event.results);
+      });
     });
   }
 
@@ -31,7 +35,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        {!gameStarted && (
+        {!gameStarted && !gameResults && (
           <div>
             <h1 className="mb-3 p-3 text-center" style={{ color: "#40dbc9" }}>
               <i className="las la-dragon"></i> OpenPIU
@@ -47,7 +51,9 @@ const Home: NextPage = () => {
                         {song.artist} - {song.title}
                       </h5>
                       {song.difficulties
-                        .filter((difficulty) => difficulty.type === "pump-single")
+                        .filter(
+                          (difficulty) => difficulty.type === "pump-single"
+                        )
                         .map((difficulty) => (
                           <a
                             key={difficulty.index}
@@ -66,7 +72,7 @@ const Home: NextPage = () => {
           </div>
         )}
 
-        {gameStarted && (
+        {gameStarted && !gameResults && (
           <div>
             <div className="game-container">
               <div id="player" className="player"></div>
@@ -84,6 +90,32 @@ const Home: NextPage = () => {
             >
               Back
             </button>
+          </div>
+        )}
+
+        {gameResults && (
+          <div>
+            <h1 className="mb-3 p-3 text-center" style={{ color: "#40dbc9" }}>
+              <i className="las la-dragon"></i> OpenPIU
+            </h1>
+            <div className="d-flex text-light justify-content-center text-center">
+              <div className="col-6">
+                <h1>Your score was: {gameResults.score}</h1>
+                <p>
+                  Perfects: {gameResults.perfects}
+                  <br></br>
+                  Greats: {gameResults.greats}
+                  <br></br>
+                  Goods: {gameResults.goods}
+                  <br></br>
+                  Bads: {gameResults.bads}
+                  <br></br>
+                  Misses: {gameResults.misses}
+                </p>
+                <p>Max combo: {gameResults.maxCombo}</p>
+                <button className="btn btn-primary" onClick={() => document.location.reload()}>Play again!</button>
+              </div>
+            </div>
           </div>
         )}
       </main>

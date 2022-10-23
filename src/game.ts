@@ -4,13 +4,19 @@ import { Notes } from "./notes";
 import { Sprites } from "./sprites";
 import { Track } from "./track";
 import { Controls } from "./controls";
-import { Score } from "./score";
+import { Results, Score } from "./score";
 
 export type Difficulty = {
-  index: number
-  type: string,
-  name: string
-}
+  index: number;
+  type: string;
+  name: string;
+};
+
+export type GameEvent = {
+  type: "ended";
+  results: Results;
+};
+
 
 export type Song = {
   title: string;
@@ -24,8 +30,17 @@ export class Game {
   static debugNoteClick: HTMLAudioElement | null = null;
   static noteSpeed = 0.4;
   static started = false;
+  static ended = false;
+  static eventListener: (event: GameEvent) => void = () => {};
 
-  static async start(song: Song, difficultyIndex: number) {
+  static async start(
+    song: Song,
+    difficultyIndex: number,
+    eventListener?: (event: GameEvent) => void
+  ) {
+    if (eventListener) {
+      this.eventListener = eventListener;
+    }
     if (!Game.started) {
       await Sprites.load();
       await Track.start(song, difficultyIndex);
@@ -34,38 +49,44 @@ export class Game {
     }
     if (this.useDebugNoteClicker) {
       this.debugNoteClick = new Audio();
-      this.debugNoteClick.src = 'debugNoteClick.wav'
-      this.debugNoteClick.load()
+      this.debugNoteClick.src = "debugNoteClick.wav";
+      this.debugNoteClick.load();
     }
   }
 
-  static stop() {
-    Track.stop()
+  static end() {
+    this.ended = true;
+    this.eventListener({
+      type: 'ended',
+      results: Score.getResults()
+    })
   }
 
   static drawFrame() {
-    // Drawing
-    Game.clearScreen();
-    Board.draw();
-    Notes.drawHitNoteAnimations();
-    Game.drawNotes();
-    Score.draw();
+    if (!Game.ended) {
+      // Drawing
+      Game.clearScreen();
+      Board.draw();
+      Notes.drawHitNoteAnimations();
+      Game.drawNotes();
+      Score.draw();
 
-    // Calculation
-    Controls.processGamepadInput();
-    Controls.checkGoneNotes();
-    Track.checkGoneHeldNotes();
-    if (Game.useDebugNoteClicker) {
-      Game.processDebugNoteClick()
+      // Calculation
+      Controls.processGamepadInput();
+      Controls.checkGoneNotes();
+      Track.checkGoneHeldNotes();
+      if (Game.useDebugNoteClicker) {
+        Game.processDebugNoteClick();
+      }
+
+      window.requestAnimationFrame(Game.drawFrame);
     }
-
-    window.requestAnimationFrame(Game.drawFrame);
   }
 
   private static processDebugNoteClick() {
     const trackTime = Track.getTimeMs();
     if (Track.getNotes().some((note) => Math.abs(note.time - trackTime) <= 8)) {
-      this.debugNoteClick?.play()
+      this.debugNoteClick?.play();
     }
   }
 

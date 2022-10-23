@@ -1,6 +1,5 @@
 const glob = require('glob');
 const fs = require('fs');
-const lodash = require('lodash')
 
 const lineSeparatorRegex = "[\r\n]+";
 

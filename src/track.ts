@@ -1,7 +1,7 @@
 import { Lane } from './controls';
 import { Note, parseStepFile } from './noteParser';
 import { Score } from './score';
-import { Song } from './game';
+import { Game, Song } from './game';
 const YTPlayer = require('yt-player');
 const player = new YTPlayer('#player');
 
@@ -32,6 +32,9 @@ export class Track {
       player.seek(0);
       player.play();
     });
+    player.on('ended', () => {
+      Game.end()
+    })
   }
 
   static stop() {

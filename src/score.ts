@@ -1,7 +1,6 @@
 // Todo this
 
 import { Board } from "./board";
-import { Canvas } from "./canvas";
 import { Sprites } from "./sprites";
 import { Track } from "./track";
 import { centeredXCoordsFor } from "./util";
@@ -23,11 +22,22 @@ enum NoteJudgement {
   MISS,
 }
 
+export type Results = {
+  score: number
+  misses: number
+  perfects: number
+  greats: number
+  goods: number
+  bads: number
+  maxCombo: number
+}
+
 export class Score {
   static playerHitWindowMs = 150;
 
   static score = 0;
   static combo = 0;
+  static maxCombo = 0;
 
   static misses = 0;
   static perfects = 0;
@@ -40,6 +50,9 @@ export class Score {
 
   static hit(offsetTime: number) {
     this.combo++;
+    if (this.combo > this.maxCombo) {
+      this.maxCombo = this.combo;
+    }
     const offsetTimeAbs = Math.abs(offsetTime);
     const percentageOffset = (offsetTimeAbs * 100) / this.playerHitWindowMs;
     if (percentageOffset < 30) {
@@ -200,6 +213,18 @@ export class Score {
           Sprites.drawChunk(Sprites.noteJudgements, 0, 5, x, y, options);
           break;
       }
+    }
+  }
+
+  static getResults(): Results {
+    return {
+      bads: this.bads,
+      goods: this.goods,
+      greats: this.greats, 
+      misses: this.misses,
+      perfects: this.perfects,
+      score: this.score,
+      maxCombo: this.maxCombo
     }
   }
 }
