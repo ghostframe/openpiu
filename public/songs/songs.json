@@ -2,45 +2,250 @@
   {
     "title": "Turkey March",
     "difficulties": [
-      "Pro S2",
-      "s2 Hidden",
-      "s3 New",
-      "Pro S4",
-      "s7",
-      "s12",
-      "s15 Another",
-      "s18 Another",
-      "s21 Quest",
-      "d9",
-      "Pro HalfDouble 19",
-      "d19",
-      "DP Couple 7",
-      "DP Couple 12",
-      "DP Pro",
-      "s18 OUCS",
-      "d17 OUCS",
-      "DP50 OUCS",
-      "DP Quest (F2) 1",
-      "DP Quest (F2) 2"
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "Pro S2"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s2 Hidden"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s3 New"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "Pro S4"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s7"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s12"
+      },
+      {
+        "index": 6,
+        "type": "pump-single",
+        "name": "s15 Another"
+      },
+      {
+        "index": 7,
+        "type": "pump-single",
+        "name": "s18 Another"
+      },
+      {
+        "index": 8,
+        "type": "pump-single",
+        "name": "s21 Quest"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d9"
+      },
+      {
+        "index": 10,
+        "type": "pump-halfdouble",
+        "name": "Pro HalfDouble 19"
+      },
+      {
+        "index": 11,
+        "type": "pump-double",
+        "name": "d19"
+      },
+      {
+        "index": 12,
+        "type": "pump-couple",
+        "name": "DP Couple 7"
+      },
+      {
+        "index": 13,
+        "type": "pump-couple",
+        "name": "DP Couple 12"
+      },
+      {
+        "index": 14,
+        "type": "pump-routine",
+        "name": "DP Pro"
+      },
+      {
+        "index": 15,
+        "type": "pump-single",
+        "name": "s18 OUCS"
+      },
+      {
+        "index": 16,
+        "type": "pump-double",
+        "name": "d17 OUCS"
+      },
+      {
+        "index": 17,
+        "type": "pump-double",
+        "name": "DP50 OUCS"
+      },
+      {
+        "index": 18,
+        "type": "pump-routine",
+        "name": "DP Quest (F2) 1"
+      },
+      {
+        "index": 19,
+        "type": "pump-routine",
+        "name": "DP Quest (F2) 2"
+      }
     ],
     "stepFilename": "songs/1ST_3RD/303 - Turkey March.ssc",
     "artist": "Banya"
   },
   {
+    "title": "Don't Bother Me",
+    "difficulties": [
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "Pro S2"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s4"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s5"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s6 Hidden"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s10"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s14 Quest"
+      },
+      {
+        "index": 6,
+        "type": "pump-double",
+        "name": "d5"
+      },
+      {
+        "index": 7,
+        "type": "pump-halfdouble",
+        "name": "Pro HalfDouble 10"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d13"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d13 Pro"
+      },
+      {
+        "index": 10,
+        "type": "pump-single",
+        "name": "SP"
+      },
+      {
+        "index": 11,
+        "type": "pump-couple",
+        "name": "DP Couple 2"
+      },
+      {
+        "index": 12,
+        "type": "pump-couple",
+        "name": "DP Couple 6"
+      },
+      {
+        "index": 13,
+        "type": "pump-double",
+        "name": "DP INFINITY"
+      }
+    ],
+    "stepFilename": "songs/1ST_3RD/312 - Don't Bother Me.ssc",
+    "artist": "Tashannie"
+  },
+  {
     "title": "Caprice Of Otada",
     "difficulties": [
-      "s3 Hidden",
-      "s4 Fiesta",
-      "s6 New",
-      "s8",
-      "s17",
-      "s18 Another",
-      "s19 Another",
-      "d10",
-      "d18",
-      "d19 Another",
-      "d21 Another",
-      "s19 Quest"
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s3 Hidden"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s4 Fiesta"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s6 New"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s8"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s17"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s18 Another"
+      },
+      {
+        "index": 6,
+        "type": "pump-single",
+        "name": "s19 Another"
+      },
+      {
+        "index": 7,
+        "type": "pump-double",
+        "name": "d10"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d18"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d19 Another"
+      },
+      {
+        "index": 10,
+        "type": "pump-double",
+        "name": "d21 Another"
+      },
+      {
+        "index": 11,
+        "type": "pump-single",
+        "name": "s19 Quest"
+      }
     ],
     "stepFilename": "songs/NX_NX2/E03 - Caprice of Otada.ssc",
     "artist": "Banya Production"
@@ -48,12 +253,36 @@
   {
     "title": "Money",
     "difficulties": [
-      "s10",
-      "s14",
-      "d12",
-      "d16",
-      "SP",
-      "s12 UCS"
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s10"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s14"
+      },
+      {
+        "index": 2,
+        "type": "pump-double",
+        "name": "d12"
+      },
+      {
+        "index": 3,
+        "type": "pump-double",
+        "name": "d16"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "SP"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s12 UCS"
+      }
     ],
     "stepFilename": "songs/NX_NX2/E04 - Money.ssc",
     "artist": "Banya Production"
@@ -61,22 +290,86 @@
   {
     "title": "Faster Z",
     "difficulties": [
-      "s4 Hidden",
-      "s4 New",
-      "s6",
-      "s8 Another",
-      "s12",
-      "s16 Another",
-      "s19",
-      "s20 Another",
-      "d14",
-      "d18 Another",
-      "d20",
-      "d22 Another",
-      "d23 New",
-      "d18 Quest",
-      "s11 Quest",
-      "s5 Quest"
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s4 Hidden"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s4 New"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s6"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s8 Another"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s12"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s16 Another"
+      },
+      {
+        "index": 6,
+        "type": "pump-single",
+        "name": "s19"
+      },
+      {
+        "index": 7,
+        "type": "pump-single",
+        "name": "s20 Another"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d14"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d18 Another"
+      },
+      {
+        "index": 10,
+        "type": "pump-double",
+        "name": "d20"
+      },
+      {
+        "index": 11,
+        "type": "pump-double",
+        "name": "d22 Another"
+      },
+      {
+        "index": 12,
+        "type": "pump-double",
+        "name": "d23 New"
+      },
+      {
+        "index": 13,
+        "type": "pump-double",
+        "name": "d18 Quest"
+      },
+      {
+        "index": 14,
+        "type": "pump-single",
+        "name": "s11 Quest"
+      },
+      {
+        "index": 15,
+        "type": "pump-single",
+        "name": "s5 Quest"
+      }
     ],
     "stepFilename": "songs/NX_NX2/E12 - Faster Z.ssc",
     "artist": "Yahpp"
@@ -84,20 +377,76 @@
   {
     "title": "Jam O Beat",
     "difficulties": [
-      "s3 Quest",
-      "s6 Quest",
-      "s7",
-      "s14",
-      "s15 Quest",
-      "quest",
-      "quest",
-      "d5 Quest",
-      "d12 Quest",
-      "d13 Quest",
-      "d14",
-      "d16 Quest",
-      "SP",
-      "DP"
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s3 Quest"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s6 Quest"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s7"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s14"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s15 Quest"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "quest"
+      },
+      {
+        "index": 6,
+        "type": "pump-single",
+        "name": "quest"
+      },
+      {
+        "index": 7,
+        "type": "pump-double",
+        "name": "d5 Quest"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d12 Quest"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d13 Quest"
+      },
+      {
+        "index": 10,
+        "type": "pump-double",
+        "name": "d14"
+      },
+      {
+        "index": 11,
+        "type": "pump-double",
+        "name": "d16 Quest"
+      },
+      {
+        "index": 12,
+        "type": "pump-single",
+        "name": "SP"
+      },
+      {
+        "index": 13,
+        "type": "pump-double",
+        "name": "DP"
+      }
     ],
     "stepFilename": "songs/NX_NX2/E25 - Jam O Beat.ssc",
     "artist": "Banya Production"
@@ -105,14 +454,46 @@
   {
     "title": "Beat of the War",
     "difficulties": [
-      "s3 New",
-      "s5",
-      "s9 New",
-      "s10",
-      "s15",
-      "d10 HalfDouble Hidden",
-      "d12",
-      "d19"
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s3 New"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s5"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s9 New"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s10"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s15"
+      },
+      {
+        "index": 5,
+        "type": "pump-double",
+        "name": "d10 HalfDouble Hidden"
+      },
+      {
+        "index": 6,
+        "type": "pump-double",
+        "name": "d12"
+      },
+      {
+        "index": 7,
+        "type": "pump-double",
+        "name": "d19"
+      }
     ],
     "stepFilename": "songs/REBIRTH_PREX3/820 - Beat of the War.ssc",
     "artist": "Banya"
@@ -120,25 +501,101 @@
   {
     "title": "Beethoven Virus",
     "difficulties": [
-      "s4",
-      "s7",
-      "s8",
-      "s10 Another",
-      "s13",
-      "s14 Hidden",
-      "s16",
-      "s17 Another",
-      "s18 Quest",
-      "d8",
-      "d11 Another",
-      "d18",
-      "d20",
-      "DP",
-      "s2 Hidden",
-      "Jump S2",
-      "Jump S3",
-      "Pro S3",
-      "Pro HalfDouble 13"
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s4"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s7"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s8"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s10 Another"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s13"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s14 Hidden"
+      },
+      {
+        "index": 6,
+        "type": "pump-single",
+        "name": "s16"
+      },
+      {
+        "index": 7,
+        "type": "pump-single",
+        "name": "s17 Another"
+      },
+      {
+        "index": 8,
+        "type": "pump-single",
+        "name": "s18 Quest"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d8"
+      },
+      {
+        "index": 10,
+        "type": "pump-double",
+        "name": "d11 Another"
+      },
+      {
+        "index": 11,
+        "type": "pump-double",
+        "name": "d18"
+      },
+      {
+        "index": 12,
+        "type": "pump-double",
+        "name": "d20"
+      },
+      {
+        "index": 13,
+        "type": "pump-double",
+        "name": "DP"
+      },
+      {
+        "index": 14,
+        "type": "pump-single",
+        "name": "s2 Hidden"
+      },
+      {
+        "index": 15,
+        "type": "pump-single",
+        "name": "Jump S2"
+      },
+      {
+        "index": 16,
+        "type": "pump-single",
+        "name": "Jump S3"
+      },
+      {
+        "index": 17,
+        "type": "pump-single",
+        "name": "Pro S3"
+      },
+      {
+        "index": 18,
+        "type": "pump-halfdouble",
+        "name": "Pro HalfDouble 13"
+      }
     ],
     "stepFilename": "songs/SE_EXTRA/505 - Beethoven Virus.ssc",
     "artist": "Banya"

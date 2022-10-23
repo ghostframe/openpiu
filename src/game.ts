@@ -6,9 +6,15 @@ import { Track } from "./track";
 import { Controls } from "./controls";
 import { Score } from "./score";
 
+export type Difficulty = {
+  index: number
+  type: string,
+  name: string
+}
+
 export type Song = {
   title: string;
-  difficulties: Array<string>;
+  difficulties: Array<Difficulty>;
   stepFilename: string;
   artist: string;
 };

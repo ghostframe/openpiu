@@ -1,5 +1,6 @@
 const glob = require('glob');
 const fs = require('fs');
+const lodash = require('lodash')
 
 const lineSeparatorRegex = "[\r\n]+";
 
@@ -15,7 +16,16 @@ function matchMultiple(songFileStr, fieldName) {
 function parseSongMetadata(stepFilename) {
   const songFileStr = fs.readFileSync(stepFilename).toString()
   const title = matchField(songFileStr, 'TITLE');
-  const difficulties = matchMultiple(songFileStr, "DESCRIPTION")
+  const stepsDescriptions = matchMultiple(songFileStr, "DESCRIPTION")
+  const stepsTypes = matchMultiple(songFileStr, "STEPSTYPE")
+  const difficulties = []
+  for (var i = 0; i < stepsDescriptions.length; i++) {
+    difficulties.push({
+      index: i,
+      type: stepsTypes[i],
+      name: stepsDescriptions[i]
+    })
+  }
   const artist = matchField(songFileStr, 'ARTIST')
   return {
     title,

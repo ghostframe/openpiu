@@ -47,8 +47,7 @@ const Home: NextPage = () => {
                         {song.artist} - {song.title}
                       </h5>
                       {song.difficulties
-                      .map((name, index) => ({name, index}))
-                        .filter((difficulty) => !difficulty.name.startsWith("d"))
+                        .filter((difficulty) => difficulty.type === "pump-single")
                         .map((difficulty) => (
                           <a
                             key={difficulty.index}
