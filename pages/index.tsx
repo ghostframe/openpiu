@@ -6,7 +6,6 @@ import { Song } from "../src/game";
 
 const Home: NextPage = () => {
   const [gameStarted, setGameStarted] = useState(false);
-  const [game, setGame] = useState<any>(null);
 
   function startGame(song: Song, difficultyIndex: number) {
     setGameStarted(true);

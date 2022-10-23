@@ -1,6 +1,6 @@
-import { Note } from './noteParser';
-import { Score } from './score';
-import { Track } from './track';
+import { Note } from "./noteParser";
+import { Score } from "./score";
+import { Track } from "./track";
 
 export type Lane = 1 | 2 | 3 | 4 | 5;
 
@@ -13,16 +13,16 @@ export class Controls {
     5: false,
   };
   static keyMappings: Record<string, Lane> = {
-    '1': 1,
-    '2': 2,
-    '3': 3,
-    '4': 4,
-    '5': 5,
-    '6': 1,
-    '7': 2,
-    '8': 3,
-    '9': 4,
-    '0': 5,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 1,
+    "7": 2,
+    "8": 3,
+    "9": 4,
+    "0": 5,
   };
 
   static gamepadMappings: Record<string, Lane> = {
@@ -36,10 +36,10 @@ export class Controls {
   static gamepadButtonsPressedState: Record<number, boolean> = {};
 
   static bind() {
-    document.addEventListener('keydown', (ev) => {
+    document.addEventListener("keydown", (ev) => {
       this.keyPressed(ev.key);
     });
-    document.addEventListener('keyup', (ev) => {
+    document.addEventListener("keyup", (ev) => {
       this.keyReleased(ev.key);
     });
   }
@@ -78,13 +78,16 @@ export class Controls {
   }
 
   private static lanePressed(lane: number) {
-    this.heldLanes[lane as Lane] = true;
-    const currentTime = Track.getTimeMs();
-    const closeNoteIndex = Track.getNotes().findIndex(
-      (note) => note.lane === lane && this.noteIsClose(note, currentTime)
-    );
-    if (closeNoteIndex !== -1) {
-      Track.notePressed(closeNoteIndex);
+    if (!this.heldLanes[lane as Lane]) {
+      // It's being pressed, not held
+      const currentTime = Track.getTimeMs();
+      const closeNoteIndex = Track.getNotes().findIndex(
+        (note) => note.lane === lane && this.noteIsClose(note, currentTime)
+      );
+      if (closeNoteIndex !== -1) {
+        Track.notePressed(closeNoteIndex);
+      }
+      this.heldLanes[lane as Lane] = true;
     }
   }
 
