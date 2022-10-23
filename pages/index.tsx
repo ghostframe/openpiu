@@ -48,15 +48,16 @@ const Home: NextPage = () => {
                         {song.artist} - {song.title}
                       </h5>
                       {song.difficulties
-                        .filter((difficulty) => !difficulty.startsWith("d"))
-                        .map((difficulty, difficultyIndex) => (
+                      .map((name, index) => ({name, index}))
+                        .filter((difficulty) => !difficulty.name.startsWith("d"))
+                        .map((difficulty) => (
                           <a
-                            key={difficultyIndex}
+                            key={difficulty.index}
                             href="#"
                             className="card-link"
-                            onClick={(ev) => startGame(song, difficultyIndex)}
+                            onClick={(ev) => startGame(song, difficulty.index)}
                           >
-                            {difficulty}
+                            {difficulty.name}
                           </a>
                         ))}
                     </div>
@@ -79,7 +80,7 @@ const Home: NextPage = () => {
               ></canvas>
             </div>
             <button
-              className="btn btn-primary"
+              className="btn btn-dark"
               style={{ position: "absolute", left: "1px", top: "10px" }}
               onClick={(ev) => document.location.reload()}
             >
