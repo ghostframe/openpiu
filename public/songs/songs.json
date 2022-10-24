@@ -452,6 +452,356 @@
     "artist": "Banya Production"
   },
   {
+    "title": "Dr. M",
+    "difficulties": [
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s3"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s4 Hidden"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s7"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s9 New"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s12"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s16 Another"
+      },
+      {
+        "index": 6,
+        "type": "pump-single",
+        "name": "s19 Quest"
+      },
+      {
+        "index": 7,
+        "type": "pump-double",
+        "name": "d11"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d13 HalfDouble Hidden"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d16"
+      },
+      {
+        "index": 10,
+        "type": "pump-single",
+        "name": "Jump S02"
+      },
+      {
+        "index": 11,
+        "type": "pump-single",
+        "name": "Jump S03"
+      }
+    ],
+    "stepFilename": "songs/REBIRTH_PREX3/701 - Dr. M.ssc",
+    "artist": "Banya"
+  },
+  {
+    "title": "Winter",
+    "difficulties": [
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s4 New"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s5 Hidden"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s6 New"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s8"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s15"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s20 Quest"
+      },
+      {
+        "index": 6,
+        "type": "pump-double",
+        "name": "d11"
+      },
+      {
+        "index": 7,
+        "type": "pump-double",
+        "name": "d12 HalfDouble Hidden"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d17 New"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d19"
+      },
+      {
+        "index": 10,
+        "type": "pump-single",
+        "name": "s20 Infinity"
+      },
+      {
+        "index": 11,
+        "type": "pump-double",
+        "name": "d21 Quest"
+      },
+      {
+        "index": 12,
+        "type": "pump-single",
+        "name": "Jump S02"
+      },
+      {
+        "index": 13,
+        "type": "pump-single",
+        "name": "Jump S03"
+      }
+    ],
+    "stepFilename": "songs/REBIRTH_PREX3/711 - Winter.ssc",
+    "artist": "Banya"
+  },
+  {
+    "title": "Will O The Wisp",
+    "difficulties": [
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s3 New"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s5"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s10"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s13"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s18 Hidden"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s19 Another"
+      },
+      {
+        "index": 6,
+        "type": "pump-double",
+        "name": "d10 HalfDouble"
+      },
+      {
+        "index": 7,
+        "type": "pump-double",
+        "name": "d13"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d19"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d21 Another"
+      },
+      {
+        "index": 10,
+        "type": "pump-double",
+        "name": "d20 Quest"
+      }
+    ],
+    "stepFilename": "songs/REBIRTH_PREX3/712 - Will O The Wisp.ssc",
+    "artist": "Banya"
+  },
+  {
+    "title": "Vook",
+    "difficulties": [
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s4 New"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s5 Hidden"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s7 New"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s9"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s15"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s17 Another"
+      },
+      {
+        "index": 6,
+        "type": "pump-single",
+        "name": "s20 Another"
+      },
+      {
+        "index": 7,
+        "type": "pump-double",
+        "name": "d12 HalfDouble Another"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d17"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d18"
+      },
+      {
+        "index": 10,
+        "type": "pump-double",
+        "name": "d19 Another"
+      },
+      {
+        "index": 11,
+        "type": "pump-double",
+        "name": "d23 Quest"
+      }
+    ],
+    "stepFilename": "songs/REBIRTH_PREX3/735 - Vook.ssc",
+    "artist": "Banya"
+  },
+  {
+    "title": "Csikos Post",
+    "difficulties": [
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s3 New"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s4 Hidden"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s7"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s10 New"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s13"
+      },
+      {
+        "index": 5,
+        "type": "pump-double",
+        "name": "d7 HalfDouble Hidden"
+      },
+      {
+        "index": 6,
+        "type": "pump-double",
+        "name": "d8"
+      },
+      {
+        "index": 7,
+        "type": "pump-double",
+        "name": "d15 Hidden"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d16 New"
+      },
+      {
+        "index": 9,
+        "type": "pump-double",
+        "name": "d18 Another"
+      },
+      {
+        "index": 10,
+        "type": "pump-double",
+        "name": "d21 OUCS"
+      },
+      {
+        "index": 11,
+        "type": "pump-routine",
+        "name": "DP 14 Infinity"
+      },
+      {
+        "index": 12,
+        "type": "pump-single",
+        "name": "Jump S03"
+      },
+      {
+        "index": 13,
+        "type": "pump-single",
+        "name": "Jump S04"
+      }
+    ],
+    "stepFilename": "songs/REBIRTH_PREX3/736 - Csikos Post.ssc",
+    "artist": "Banya"
+  },
+  {
     "title": "Bee",
     "difficulties": [
       {
