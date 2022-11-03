@@ -1,10 +1,10 @@
-import { Board } from "./board";
-import { Canvas } from "./canvas";
-import { Notes } from "./notes";
-import { Sprites } from "./sprites";
-import { Track } from "./track";
-import { Controls } from "./controls";
-import { Results, Score } from "./score";
+import { Board } from './board';
+import { Canvas } from './canvas';
+import { Notes } from './notes';
+import { Sprites } from './sprites';
+import { Track } from './track';
+import { Controls } from './controls';
+import { Results, Score } from './score';
 
 export type Difficulty = {
   index: number;
@@ -13,10 +13,9 @@ export type Difficulty = {
 };
 
 export type GameEvent = {
-  type: "ended";
+  type: 'ended';
   results: Results;
 };
-
 
 export type Song = {
   title: string;
@@ -49,7 +48,7 @@ export class Game {
     }
     if (this.useDebugNoteClicker) {
       this.debugNoteClick = new Audio();
-      this.debugNoteClick.src = "debugNoteClick.wav";
+      this.debugNoteClick.src = 'debugNoteClick.wav';
       this.debugNoteClick.load();
     }
   }
@@ -58,8 +57,8 @@ export class Game {
     this.ended = true;
     this.eventListener({
       type: 'ended',
-      results: Score.getResults()
-    })
+      results: Score.getResults(),
+    });
   }
 
   static drawFrame() {

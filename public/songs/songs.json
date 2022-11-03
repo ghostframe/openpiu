@@ -1130,5 +1130,67 @@
     ],
     "stepFilename": "songs/SE_EXTRA/911 - Chicken Wing.ssc",
     "artist": "Banya"
+  },
+  {
+    "title": "Final Audition Episode 1",
+    "difficulties": [
+      {
+        "index": 0,
+        "type": "pump-single",
+        "name": "s4 New"
+      },
+      {
+        "index": 1,
+        "type": "pump-single",
+        "name": "s7 New"
+      },
+      {
+        "index": 2,
+        "type": "pump-single",
+        "name": "s8"
+      },
+      {
+        "index": 3,
+        "type": "pump-single",
+        "name": "s13 Another"
+      },
+      {
+        "index": 4,
+        "type": "pump-single",
+        "name": "s15"
+      },
+      {
+        "index": 5,
+        "type": "pump-single",
+        "name": "s19 Another"
+      },
+      {
+        "index": 6,
+        "type": "pump-double",
+        "name": "d11"
+      },
+      {
+        "index": 7,
+        "type": "pump-double",
+        "name": "d21"
+      },
+      {
+        "index": 8,
+        "type": "pump-double",
+        "name": "d23 Another"
+      },
+      {
+        "index": 9,
+        "type": "pump-couple",
+        "name": "DP Couple 8"
+      },
+      {
+        "index": 10,
+        "type": "pump-double",
+        "name": "d17 Quest"
+      }
+    ],
+    "stepFilename": "songs/SE_EXTRA/922 - Final Audition Episode 1.ssc",
+    "artist": "Banya"
   }
 ]

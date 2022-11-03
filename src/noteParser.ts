@@ -1,5 +1,3 @@
-import { arrayBuffer } from "stream/consumers";
-
 export type Note = {
   lane: number;
   time: number;
@@ -7,7 +5,7 @@ export type Note = {
   endTime: number | null;
 };
 
-const lineSeparatorRegex = "[\r\n]+";
+const lineSeparatorRegex = '[\r\n]+';
 
 type Event = {
   beats: number;
@@ -22,6 +20,8 @@ type Step = {
   notes: Array<Note>;
 };
 
+const AV_DELAY = 50;
+
 function parseEventField(
   noteData: string,
   field: string,
@@ -29,9 +29,9 @@ function parseEventField(
 ): Array<Event> {
   const eventsStr = parseFieldRepeated(noteData, field)[difficultyIndex + 1];
   if (eventsStr.length === 0) {
-    return []
+    return [];
   }
-  return eventsStr.split(",").map((eventStr) => {
+  return eventsStr.split(',').map((eventStr) => {
     const eventSplit = eventStr.match(/(.*)=(.*)/);
     return {
       beats: Number.parseFloat(eventSplit!![1]),
@@ -67,9 +67,13 @@ function beatAndMeasureToMs(
     currentBpmOffsetMs += beatsToMs(bpmDurationTicks, bpm);
   }
 
-  const delaysFromStart = delays.filter((delay) => delay.beats < beatsFromStart);
+  const delaysFromStart = delays.filter(
+    (delay) => delay.beats < beatsFromStart
+  );
   var currentDelayOffsetMs = 0;
-  delaysFromStart.forEach((delay) => (currentDelayOffsetMs += delay.value * 1000));
+  delaysFromStart.forEach(
+    (delay) => (currentDelayOffsetMs += delay.value * 1000)
+  );
 
   const ticksOfCurrentBpm = beatsFromStart - currentBpm.beats;
 
@@ -77,7 +81,8 @@ function beatAndMeasureToMs(
     beatsToMs(ticksOfCurrentBpm, currentBpm) +
     initialOffset +
     currentBpmOffsetMs +
-    currentDelayOffsetMs
+    currentDelayOffsetMs +
+    AV_DELAY
   );
 }
 
@@ -88,13 +93,13 @@ function parseFieldSingle(stepStr: string, field: string): string {
 
 function parseFieldRepeated(stepStr: string, field: string): Array<string> {
   const fieldMatches = stepStr.matchAll(
-    new RegExp(`#${field}:([\\s\\S]*?);`, "g")
+    new RegExp(`#${field}:([\\s\\S]*?);`, 'g')
   );
   return Array.from(fieldMatches, (match) => match[1]);
 }
 
 function stripComments(str: string): string {
-  return str.replaceAll(new RegExp("\\s*//(.*)", "g"), "");
+  return str.replaceAll(new RegExp('\\s*//(.*)', 'g'), '');
 }
 
 function parseNotes(
@@ -170,13 +175,13 @@ export function parseStepFile(
   difficultyIndex: number
 ): Step {
   fileContents = stripComments(fileContents);
-  const youtubeId = parseFieldSingle(fileContents, "YOUTUBEID");
+  const youtubeId = parseFieldSingle(fileContents, 'YOUTUBEID');
   const youtubeOffset = Number.parseFloat(
-    parseFieldSingle(fileContents, "YOUTUBEOFFSET")
+    parseFieldSingle(fileContents, 'YOUTUBEOFFSET')
   );
-  const notesStr = parseFieldRepeated(fileContents, "NOTES")[difficultyIndex];
-  const bpms = parseEventField(fileContents, "BPMS", difficultyIndex);
-  const delays = parseEventField(fileContents, "DELAYS", difficultyIndex);
+  const notesStr = parseFieldRepeated(fileContents, 'NOTES')[difficultyIndex];
+  const bpms = parseEventField(fileContents, 'BPMS', difficultyIndex);
+  const delays = parseEventField(fileContents, 'DELAYS', difficultyIndex);
   const notes = parseNotes(notesStr, bpms, delays, youtubeOffset);
   return {
     notes,

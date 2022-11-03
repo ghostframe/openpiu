@@ -1,9 +1,7 @@
 import { Canvas } from './canvas';
-import { centeredXCoordsFor, centeredYCoordsFor } from './util';
+import { centeredXCoordsFor } from './util';
 import { Sprites } from './sprites';
-import { Track } from './track';
 import { Controls } from './controls';
-import { Notes } from './notes';
 
 export class Board {
   static width = 320;
